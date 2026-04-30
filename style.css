@@ -1,0 +1,266 @@
+/* ============================================================
+   Wild Gunman — styles
+   ============================================================ */
+
+/* ─── Font ─── */
+@font-face {
+    font-family: 'Digital7';
+    src: url('img/digital-7.ttf') format('truetype');
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ─── Body ─── */
+body {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    cursor: crosshair;
+    font-family: monospace;
+}
+
+/* ─── Game container ─── */
+#game-container {
+    position: relative;
+    width: 800px;
+    height: 550px;
+    user-select: none;
+}
+
+/* ─── Screens ─── */
+.screen {
+    display: none;
+    position: absolute;
+    inset: 0;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* ============================================================
+   Menu screen
+   ============================================================ */
+#menu-screen {
+    background: url('img/main-background.png') center / cover no-repeat;
+}
+
+#menu-screen.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+#menu-title {
+    font-size: 64px;
+    font-weight: bold;
+    color: #e8c840;
+    text-transform: uppercase;
+    text-shadow: 4px 4px 0 #8b1a1a, -2px -2px 0 #000;
+    letter-spacing: 5px;
+    text-align: center;
+    line-height: 1.15;
+    margin-bottom: 40px;
+}
+
+/* ─── Buttons ─── */
+.btn {
+    font-family: monospace;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 12px 34px;
+    background: #8b1a1a;
+    color: #e8c840;
+    border: 3px solid #e8c840;
+    cursor: pointer;
+    transition: background 0.1s, color 0.1s;
+}
+
+.btn:hover {
+    background: #e8c840;
+    color: #000;
+}
+
+/* ============================================================
+   Game screen
+   ============================================================ */
+#game-screen {
+    background: url('img/bg.png') center / cover no-repeat;
+    overflow: hidden;
+}
+
+#game-screen.active {
+    display: block;
+}
+
+/* ─── HUD top ─── */
+#hud-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 72px;
+    background: rgba(0, 0, 0, 0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    z-index: 100;
+}
+
+.hud-block {
+    text-align: center;
+    font-family: monospace;
+    font-size: 12px;
+    color: #80d010;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hud-timer {
+    font-family: 'Digital7', monospace;
+    font-size: 46px;
+    color: #80d010;
+    line-height: 1;
+}
+
+/* ─── HUD bottom ─── */
+#hud-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 58px;
+    background: rgba(0, 0, 0, 0.88);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 50px;
+    z-index: 100;
+}
+
+.hud-stat {
+    font-family: monospace;
+    font-size: 18px;
+    color: #80d010;
+    text-transform: uppercase;
+}
+
+.hud-stat span {
+    color: #e8c840;
+}
+
+/* ─── Arena ─── */
+#arena {
+    position: absolute;
+    top: 72px; left: 0; right: 0; bottom: 58px;
+    overflow: hidden;
+}
+
+/* ─── Gunman sprite ─── */
+#gunman {
+    position: absolute;
+    bottom: 10px;
+    image-rendering: pixelated;
+    z-index: 50;
+    cursor: crosshair;
+}
+
+/* ─── FIRE message ─── */
+/* СТАЛО */
+#message {
+    position: absolute;
+    top: 14px;
+    left: 60%;
+    transform: translateX(-30%);
+    z-index: 200;
+    display: none;
+    width: 116px;   /* подвійний розмір картинки 116×2 */
+    height: 68px;  /* подвійний розмір картинки 68×2  */
+    background: url('img/fire-right.png') center / contain no-repeat;
+    image-rendering: pixelated;
+}
+
+#message.fire {
+    animation: pulse 0.25s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: translateX(-50%) scale(1); }
+    to   { transform: translateX(-50%) scale(1.07); }
+}
+
+/* ─── Death overlay ─── */
+#death-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    display: none;
+    z-index: 150;
+}
+
+#death-overlay.active {
+    display: block;
+    animation: dflash 0.9s ease-out forwards;
+}
+
+@keyframes dflash {
+    0%   { background: rgba(180, 0, 0, 0.65); }
+    100% { background: rgba(180, 0, 0, 0); }
+}
+
+/* ============================================================
+   Win / Game Over screen
+   ============================================================ */
+#win-screen {
+    background: url('img/win-bg.png') center / cover no-repeat;
+}
+
+#win-screen.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+#win-title {
+    font-family: monospace;
+    font-size: 52px;
+    font-weight: bold;
+    color: #e8c840;
+    text-shadow: 3px 3px 0 #000;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+#win-stats {
+    font-family: monospace;
+    font-size: 20px;
+    color: #fff;
+    text-shadow: 2px 2px 0 #000;
+    text-align: center;
+    line-height: 1.8;
+}
+
+/* ─── Round-end action buttons ─── */
+#action-buttons {
+    position: absolute;
+    bottom: 68px;
+    left: 0; right: 0;
+    display: none;
+    justify-content: center;
+    gap: 20px;
+    z-index: 300;
+}
+
+#action-buttons.visible {
+    display: flex;
+}

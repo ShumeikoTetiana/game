@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wild Gunman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="game-container">
+
+    <!-- ── Menu ── -->
+    <div id="menu-screen" class="screen active">
+        <div id="menu-title">Wild<br>Gunman</div>
+        <button class="btn" id="start-btn">Start Game</button>
+    </div>
+
+    <!-- ── Game ── -->
+    <div id="game-screen" class="screen">
+
+        <div id="hud-top">
+            <div class="hud-block">
+                YOU
+                <div class="hud-timer" id="timer-you">0.00</div>
+            </div>
+            <div class="hud-block">
+                GUNMAN
+                <div class="hud-timer" id="timer-gunman">0.00</div>
+            </div>
+        </div>
+
+        <div id="arena">
+            <img id="gunman" src="" alt="gunman">
+            <div id="message"></div>
+            <div id="death-overlay"></div>
+        </div>
+
+        <div id="hud-bottom">
+            <div class="hud-stat">$ <span id="score-val">0</span> REWARD</div>
+            <div class="hud-stat">LEVEL: <span id="level-val">1</span></div>
+        </div>
+
+    </div>
+
+    <!-- ── Win / Game Over ── -->
+    <div id="win-screen" class="screen">
+        <div id="win-title"></div>
+        <div id="win-stats"></div>
+        <button class="btn" id="restart-btn">Play Again</button>
+    </div>
+
+    <!-- ── Round-end buttons ── -->
+    <div id="action-buttons">
+        <button class="btn" id="next-btn">Next Round</button>
+        <button class="btn" id="quit-btn">End Game</button>
+    </div>
+
+</div>
+
+<audio id="snd-intro"    src="audio/intro.m4a"     loop></audio>
+<audio id="snd-wait"     src="audio/wait.m4a"></audio>
+<audio id="snd-fire"     src="audio/fire.m4a"></audio>
+<audio id="snd-shot"     src="audio/shot.m4a"></audio>
+<audio id="snd-shotfall" src="audio/shot-fall.m4a"></audio>
+<audio id="snd-death"    src="audio/death.m4a"></audio>
+<audio id="snd-win"      src="audio/win.m4a"></audio>
+<audio id="snd-foul"     src="audio/foul.m4a"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
